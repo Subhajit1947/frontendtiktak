@@ -1,24 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+import Firstpage from "./component/Firstpage";
+import Signup from "./component/Signup";
+import Login from "./component/Login";
+import Feed1 from "./component/Feed1";
+import {BrowserRouter,Routes,Route} from 'react-router-dom'
+import Ghome from "./component/game/Ghome";
+import Femail from "./component/game/Femail";
+
+import { useEffect } from "react";
+import axios from "axios";
+import { useState } from "react";
+import { StreamChat } from "stream-chat";
+import { Chat } from "stream-chat-react";
 
 function App() {
+  
+  const [u,setu]=useState('')
+  
+  
+
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      
+      <BrowserRouter>
+        <Routes>
+          {u==''?
+          <>
+          <Route path="/" element={<Firstpage/>}/>
+          <Route path="/signup" element={<Signup/>}/>
+          <Route path="/login" element={<Login setu={setu}/>}/>
+          </>:
+          <>
+          <Route path='/ghome' element={<Ghome u={u}/>}/>
+          <Route path='/femail' element={<Femail u={u}/>}/>
+          
+          </> }
+        </Routes>
+        
+      </BrowserRouter>
+      
+      
+    </>
+    
+      
+    
   );
 }
 
